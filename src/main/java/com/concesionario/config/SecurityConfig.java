@@ -42,7 +42,7 @@ public class SecurityConfig {
                                 "/registro",
                                 "/vehiculos"
                                 ,"/vehiculos/explorar/{id}",
-                                "/styles4.css",
+
                                 "/images/**",
                                 "/nosotros",
                                 "/garantias",
@@ -54,12 +54,12 @@ public class SecurityConfig {
                                 "/usuario/loginup",
                                 "/css/**",
                                 "/js/**",
-                                "/STloginup.css",
+
                                 "/uploads/**",
                                 "/auth/**"
 
                         ).permitAll()
-                        // ✅ NUEVO: Protección para roles específicos de trabajadores
+                        // proteccion para roles específicos de trabajadores
                         .requestMatchers("/perfil_gestor").hasRole("TRB_GESTOR")
                         .requestMatchers("/perfil_analisis").hasRole("TRB_ANALISIS")
                         .requestMatchers("/perfil_asesor").hasRole("TRB_ASESOR")
@@ -97,7 +97,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, authentication) -> {
-            // ✅ NUEVA LÓGICA: Redirección inteligente por roles
+            // redireccion inteligente por roles
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
             if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_TRB_GESTOR"))) {

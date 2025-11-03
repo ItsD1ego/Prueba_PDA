@@ -100,7 +100,7 @@ public class TrabajadorDetailsService implements UserDetailsService {
     public List<Map<String, Object>> obtenerProspectosParaAsesor(String asesorId) {
         List<Cita> citasAsesor = citaRepository.findByTrabajadorId(asesorId);
 
-        // ✅ CORREGIR: Filtrar citas con usuario no nulo
+        // CORREGIR: Filtrar citas con usuario no nulo
         List<Cita> citasValidas = citasAsesor.stream()
                 .filter(cita -> cita.getUsuario() != null)
                 .collect(Collectors.toList());
@@ -122,7 +122,7 @@ public class TrabajadorDetailsService implements UserDetailsService {
     private Map<String, Object> convertirCitaAProspecto(Cita cita) {
         Map<String, Object> prospecto = new HashMap<>();
 
-        // ✅ CORREGIR: Obtener nombres y apellidos del USUARIO EMBEBIDO, no de la cita directamente
+        // CORREGIR: Obtener nombres y apellidos del USUARIO EMBEBIDO, no de la cita directamente
         String nombreCompleto = "";
         if (cita.getUsuario() != null) {
             // Los datos reales están en el usuario embebido
@@ -143,7 +143,7 @@ public class TrabajadorDetailsService implements UserDetailsService {
             vehiculoInteres = cita.getNombreVehiculo();
         }
 
-        // ✅ CORREGIR: También obtener email del usuario embebido
+        // CORREGIR: También obtener email del usuario embebido
         String email = "";
         if (cita.getUsuario() != null && cita.getUsuario().getCorreo() != null) {
             email = cita.getUsuario().getCorreo();

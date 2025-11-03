@@ -20,9 +20,6 @@ public class VehiculoService {
     private final VehiculoRepository vehiculoRepository;
     private final Cloudinary cloudinary;
 
-    // ELIMINAR esta línea ya que no usaremos uploadDir local
-    // @Value("${upload.dir}")
-    // private String uploadDir;
 
     public VehiculoService(VehiculoRepository vehiculoRepository, Cloudinary cloudinary) {
         this.vehiculoRepository = vehiculoRepository;

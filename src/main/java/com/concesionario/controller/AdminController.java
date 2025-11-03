@@ -51,9 +51,7 @@ public class AdminController {
     @Autowired
     private NotificacionService notificacionService;
 
-    // ❌ ELIMINADO: Ya no necesitamos uploadDir local
-    // @Value("${upload.dir}")
-    // private String uploadDir;
+
 
     @Autowired
     private TrabajadorRepository TrabajadorRepository;
@@ -105,7 +103,7 @@ public class AdminController {
             return manejarErrorRegistro(model, nombre, apellido, correo, identificacion, horaInicio, horaFin);
         }
 
-        // ✅ NUEVA VALIDACIÓN: Verificar que se seleccione al menos un rol
+        // Verifica que se seleccione al menos un rol
         if (rolesStrings == null || rolesStrings.isEmpty()) {
             model.addAttribute("error", "Debe seleccionar al menos un rol para el trabajador");
             return manejarErrorRegistro(model, nombre, apellido, correo, identificacion, horaInicio, horaFin);
@@ -122,7 +120,7 @@ public class AdminController {
             trabajador.setHoraFinTrabajo(horaFin);
             trabajador.setDiasTrabajo(diasTrabajo);
 
-            // ✅ NUEVO: Procesar los roles seleccionados
+            // Procesa los roles seleccionados
             List<Rol> roles = rolesStrings.stream()
                     .map(rolString -> {
                         try {
@@ -227,7 +225,7 @@ public class AdminController {
         try {
             Vehiculo vehiculoExistente = vehiculoService.obtenerPorId(id);
 
-            // ✅ CORRECCIÓN: Procesar la nueva imagen si se proporciona
+            // procesa la nueva imagen si se proporciona
             if (imagen != null && !imagen.isEmpty()) {
                 vehiculoService.actualizarImagenVehiculo(vehiculoExistente, imagen);
             }
@@ -268,7 +266,7 @@ public class AdminController {
                 vehiculoExistente.setColores(new ArrayList<>());
             }
 
-            // ✅ MODIFICADO: Ya no necesitamos manejar la imagen aquí porque
+
             // el VehiculoService ahora usa Cloudinary automáticamente
             // Solo llamamos al servicio para guardar
             vehiculoService.guardarVehiculo(vehiculoExistente);
@@ -282,16 +280,11 @@ public class AdminController {
 
     @GetMapping("/eliminar/{id}")
     public String eliminarVehiculo(@PathVariable String id) {
-        // ✅ MODIFICADO: Ya no necesitamos eliminar archivos locales
+
         // Cloudinary maneja el almacenamiento automáticamente
         vehiculoService.eliminarVehiculo(id);
         return "redirect:/admin/Dashboard";
     }
-
-    // ❌ ELIMINADO: Ya no necesitamos el método guardarImagen local
-    // private String guardarImagen(MultipartFile imagen) throws IOException {
-    //     // Este método ha sido eliminado porque ahora usamos Cloudinary
-    // }
 
     @GetMapping("/citas")
     public String listarCitas(Model model) {

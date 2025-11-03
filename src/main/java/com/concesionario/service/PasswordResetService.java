@@ -53,18 +53,7 @@ public class PasswordResetService {
             return;
         }
 
-        // Si no es usuario, buscar en trabajadores
-        // Optional<Trabajadores> trabajadorOpt = trabajadoresRepository.findByCorreoTAM(email);
 
-        // if (trabajadorOpt.isPresent()) {
-        //     Trabajadores trabajador = trabajadorOpt.get();
-        //     String token = generateToken();
-        //     trabajador.setResetPasswordToken(token);
-        //     trabajador.setResetPasswordTokenExpiry(LocalDateTime.now().plusMinutes(EXPIRE_TOKEN_AFTER_MINUTES));
-        //     trabajadoresRepository.save(trabajador);
-        //     sendResetEmail(trabajador.getCorreoTAM(), token, "trabajador");
-        //     return;
-        // }
 
         throw new RuntimeException("No se encontró ninguna cuenta con ese correo electrónico");
     }
@@ -86,21 +75,7 @@ public class PasswordResetService {
             return;
         }
 
-        // Buscar en trabajadores
-        // Optional<Trabajadores> trabajadorOpt = trabajadoresRepository.findByResetPasswordToken(token);
 
-        // if (trabajadorOpt.isPresent()) {
-        //     Trabajadores trabajador = trabajadorOpt.get();
-        //     if (isTokenExpired(trabajador.getResetPasswordTokenExpiry())) {
-        //         throw new RuntimeException("El token ha expirado");
-        //     }
-        //     // Encriptar la nueva contraseña
-        //     trabajador.setPassword(passwordEncoder.encode(newPassword));
-        //     trabajador.setResetPasswordToken(null);
-        //     trabajador.setResetPasswordTokenExpiry(null);
-        //     trabajadoresRepository.save(trabajador);
-        //     return;
-        // }
 
         throw new RuntimeException("Token inválido");
     }
