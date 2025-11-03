@@ -42,7 +42,7 @@ public class SecurityConfig {
                                 "/registro",
                                 "/vehiculos"
                                 ,"/vehiculos/explorar/{id}",
-                                "/styles4.css",
+
                                 "/images/**",
                                 "/nosotros",
                                 "/garantias",
@@ -54,7 +54,7 @@ public class SecurityConfig {
                                 "/usuario/loginup",
                                 "/css/**",
                                 "/js/**",
-                                "/STloginup.css",
+
                                 "/uploads/**",
                                 "/auth/**"
 
